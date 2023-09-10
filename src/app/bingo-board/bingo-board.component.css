@@ -1,0 +1,244 @@
+.game-board {
+    display: flex;
+    height: calc(100% - var(--header-height));
+}
+
+.bingo-parent {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    padding-left: 0%;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.bingo-board {
+    height: 80%;
+    aspect-ratio: 1/1;
+    padding-bottom: 1%;
+    display: grid;
+}
+
+.bingo-info {
+    height: 20%;
+    /* border: 1px solid black; */
+    aspect-ratio: 4/1;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bingo-info-turn {
+    margin: 0px;
+    height: 50%;
+    font-size: 2em;
+}
+
+.bingo-info-buttons {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+
+    .bingo-button {
+        width: calc(100%/2);
+    }
+}
+
+/* .bingo-info-bingo {
+    margin: 0px;
+    height: 25%;
+    font-size: 1em;
+} */
+
+.square {
+    background-color: var(--lightBlue);
+    border: 1px solid var(--blue1);
+    color: white;
+    font-size: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.square.marked {
+    background-color: var(--darkBlue);
+}
+
+.square.complete {
+    background-color: var(--lightRed);
+}
+
+.square.selected {
+    background-color: var(--darkRed);
+}
+
+.number-parent {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    padding-right: 0%;
+    justify-content: flex-start;
+    box-sizing: border-box;
+}
+
+.number-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    height: 40%;
+    overflow-y: auto;
+    border: 2px solid black;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+    /* outline: 2px solid rgba(155, 115, 5, 0.952);
+    outline-offset: -4%;
+    border-radius: 5%;  */
+}
+
+.number {
+    width: 5vw;
+    height: 5vw;
+    background-color: var(--lightBlue);
+    border: 1px solid var(--blue1);
+    color: white;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: -1px;
+}
+
+.number:hover {
+    background-color: var(--blue1);
+}
+
+.number.marked {
+    background-color: var(--darkBlue);
+}
+
+.number.hold {
+    background-color: var(--lightGreen);
+}
+
+.number.used {
+    background-color: var(--lightRed);
+}
+
+.number.selected {
+    background-color: var(--darkRed);
+}
+
+.operations-parent {
+    display: flex;
+    justify-content: center;
+    height: 10%;
+}
+
+.operations-left {
+    width: 40%;
+    display: inherit;
+    justify-content: flex-start;
+
+    .bingo-button {
+        width: 25%;
+    }
+}
+
+.operations-bingo {
+    width: 20%;
+    display: inherit;
+    justify-content: center;
+
+    .bingo-button:focus {
+        box-shadow:
+            0 0 0 2px hsl(var(--black)),
+            0 0 0 3px hsl(var(--white));
+        border: 1px solid transparent;
+    }
+
+    .bingo-button {
+        width: 100%;
+        font-size: 1.5em;
+        color: hsl(var(--background));
+        background: var(--gradient);
+        background-size: 500%;
+        border: none;
+        transform: scaleX(1);
+        transition: transform .3s cubic-bezier(var(--transition-main), 1.275), filter .3s cubic-bezier(var(--transition-main), 1.275), bottom .3s cubic-bezier(var(--transition-main), 1.275), background-position 7.5s cubic-bezier(var(--transition-main), .955);
+    }
+
+    .bingo-button:hover {
+        bottom: 2px;
+        /* transform: scale3d(1.1, 1.1, 1.1); */
+        background-position: 100% 50%;
+        outline: none;
+        opacity: 1;
+    }
+}
+
+.operations-right {
+    width: 40%;
+    display: inherit;
+    justify-content: flex-end;
+
+    .bingo-button {
+        width: calc(100%/3);
+    }
+}
+
+.formula-parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    height: 15%;
+    border: 2px solid black;
+}
+
+.formula-parent-mango {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    height: 15%;
+    border: 2px solid black;
+}
+
+.bingo-button {
+    background-size: cover;
+    background-color: transparent;
+    border: 2px solid #000;
+    color: black;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.bingo-button:hover {
+    background-color: var(--lightBlue);
+}
+
+.bingo-button.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.6;
+    background: transparent;
+    border: 2px solid #000;
+}
+
+.small-mango {
+    height: 30%;
+    margin: -0.5%;
+}

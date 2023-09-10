@@ -1,1 +1,119 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --lightRed: #f76c6c;
+    --lightBlue: #83ccfd;
+    --blue1: #419edd;
+    --blue2: #60a6d4;
+    --darkBlue: #4681a8;
+    --lightGreen: #60d466;
+    --darkRed: #a84646;
+    --background: 266, 16%, 92%;
+    --text-primary: 0, 0%, 0%;
+    /* Colors */
+    --black: 0, 0%, 0%;
+    --white: 0, 0%, 100%;
+    --red: 347, 84%, 68%;
+    --orange: 23, 84%, 68%;
+    --yellow: 52, 84%, 68%;
+    --green: 114, 84%, 68%;
+    --teal: 163, 84%, 68%;
+    --blue: 219, 84%, 68%;
+    --purple: 279, 84%, 68%;
+    --pink: 312, 84%, 68%;
+    /* Gradients */
+    --gradient: linear-gradient(90deg, hsla(var(--red), 1) 0%, hsla(var(--orange), 1) 12.5%, hsla(var(--yellow), 1) 25%, hsla(var(--green), 1) 37.5%, hsla(var(--teal), 1) 50%, hsla(var(--blue), 1) 62.5%, hsla(var(--blue), 1) 75%, hsla(var(--purple), 1) 87.5%, hsla(var(--pink), 1) 100%);
+    /* misc */
+    --transition-main: .175, .685, .32;
+}
+
+@media (min-width: 768px) {
+    :root {
+        --header-padding-x: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --header-padding-x: 24px;
+    }
+}
+
+@media (min-width: 415px) {
+    :root {
+        --header-height: 65px;
+    }
+}
+
+/* Light theme colors */
+:root {
+    --color-tone-1: #000000;
+    --color-tone-2: #787c7e;
+    --color-tone-3: #878a8c;
+    --color-tone-4: #d3d6da;
+    --color-tone-5: #edeff1;
+    --color-tone-6: #f6f7f8;
+    --color-tone-7: #ffffff;
+    --color-tone-8: #121212;
+    --color-tone-9: #dfdfdf;
+    --color-tone-10: #000000;
+    --color-tone-11: #787c7e;
+    --color-tone-12: #363636;
+    --color-nav-hover: #f4f4f4;
+    --opacity-50: rgba(255, 255, 255, 0.5);
+    --error-background: #e3e3e1;
+    --icon-disabled: #a6a6a6;
+  }
+  
+  /* Dark Theme Colors */
+  .dark {
+    --color-tone-1: #ffffff;
+    --color-tone-2: #818384;
+    --color-tone-3: #565758;
+    --color-tone-4: #3a3a3c;
+    --color-tone-5: #272729;
+    --color-tone-6: #1a1a1b;
+    --color-tone-7: #121213;
+    --color-tone-8: #ffffff;
+    --color-tone-9: #424242;
+    --color-tone-10: #dfdfdf;
+    --color-tone-11: #dfdfdf;
+    --color-tone-12: #dfdfdf;
+    --color-nav-hover: #2f2f31;
+    --opacity-50: rgba(0, 0, 0, 0.5);
+    --error-background: var(--color-tone-7);
+    --icon-disabled: #59595a;
+  
+    --spelling-bee: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/SpellingBee-Icon-Normalized-Color.svg');
+    --daily: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Crossword-Icon-Normalized-Color.svg');
+    --mini: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Mini-Icon-Normalized-Color.svg');
+    --tiles: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Tiles-Icon-Normalized-Color.svg');
+    --sudoku: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Sudoku-Icon-Normalized-Color.svg');
+    --vertex: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Vertex-Icon-Normalized-Color.svg');
+    --letter-boxed: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/LetterBoxed-Icon-Normalized-Color.svg');
+    --digits: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Digits-Icon-Dark-Mode.svg');
+    --connections: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Connections-Icon-Dark-Mode.svg');
+    --nyt: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/NYT-Icon-Normalized-Color.svg');
+    --athletic: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Athletic-Icon-Normalized-Color.svg');
+    --stats-auth: url('https://www.nytimes.com/games-assets/v2/assets/wordle/page-icons/stats-auth-cta.svg');
+    --wordlebot: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/WordleBot-Icon-Normalized-Color.svg');
+    --wordlebot-walking-icon: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/WordleBot-Walking-Icon-Color.svg');
+    --stats-problem: url('https://www.nytimes.com/games-assets/v2/assets/wordle/page-icons/transparent-wordle-issue.svg');
+    --link-info: url('https://www.nytimes.com/games-assets/v2/assets/wordle/page-icons/dark-mode-wordle-link.svg');
+    --gameslogo: url('https://www.nytimes.com/games-assets/v2/assets/wordle/page-icons/whitegameslogo.svg');
+    --california-privacy-icon: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/california-privacy-dark.svg');
+  
+    /* dark mode sb-promo */
+    --promo-icon-height: 27px;
+    --promo-icon-width: 27px;
+    --promo-icon-bg-size: 35px;
+    --promo-icon-padding: 4px;
+    --promo-icon-height: 40px;
+    --promo-icon-width: 40px;
+    --promo-icon-padding: 0px;
+    --svg-arrow-fill: var(--color-tone-7);
+    --svg-arrow-stroke: white;
+    --svg-arrow-fill-hover: white;
+    --svg-arrow-stroke-hover: black;
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

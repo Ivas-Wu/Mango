@@ -1,0 +1,72 @@
+<div *ngIf="isPopupVisible" class="popup-overlay">
+    <div class="popup">
+        <h1 class="title">
+            Settings
+        </h1>
+        <div class="game-parent">
+            <div class="check-slider-parent">
+                <i class="fa fa-moon fa-2x" aria-hidden="true"></i>
+                <p class="check-slider-text">Dark Mode</p>
+                <mat-slide-toggle class="check-slider" color="primary" checked="false" disabled="true">
+                </mat-slide-toggle>
+            </div>
+            <div class="check-slider-parent">
+                <i class="fa fa-clock fa-2x" aria-hidden="true"></i>
+                <p class="check-slider-text">Timer Mode</p>
+                <mat-slide-toggle (click)="toggleTimeMode()" class="check-slider" color="primary" [checked]="timeMode" disabled="false">
+                </mat-slide-toggle>
+            </div>
+            <div class="check-slider-parent">
+                <i class="fa fa-th fa-2x" aria-hidden="true"></i>
+                <p class="check-slider-text">Completion Mode</p>
+                <mat-slide-toggle (click)="toggleCompletionMode()" class="check-slider" color="primary"  [checked]="completion" disabled="false">
+                </mat-slide-toggle>
+            </div>
+            <div class="check-slider-parent">
+                <i class="fa fa-spinner fa-2x" aria-hidden="true"></i>
+                <p class="check-slider-text">Placeholder</p>
+                <mat-slide-toggle class="check-slider" color="primary" checked="false" disabled="true">
+                </mat-slide-toggle>
+            </div>
+            <div class="check-slider-parent">
+                <i class="fa fa-spinner fa-2x" aria-hidden="true"></i>
+                <p class="check-slider-text">Placeholder</p>
+                <mat-slide-toggle class="check-slider" color="primary" checked="false" disabled="true">
+                </mat-slide-toggle>
+            </div>
+        </div>
+        <div class="slider-parent">
+            <div class="label-parent">
+                <label id="slider-label-name" class="slider-label-name">Board Size:</label>
+                <label class="slider-label-value">{{size}}</label>
+            </div>
+            <mat-slider class="slider" [disabled]="disabled" [max]="maxBoardSize" [min]="minBoardSize" [step]="step"
+                [discrete]="thumbLabel" [showTickMarks]="showTicks">
+                <input matSliderThumb [(ngModel)]="size" #slider>
+            </mat-slider>
+        </div>
+        <div class="slider-parent">
+            <div class="label-parent">
+                <label id="slider-label-name" class="slider-label-name">Number of Cards:</label>
+                <label class="slider-label-value">{{generate + ' Cards'}}</label>
+            </div>
+            <mat-slider class="slider" [disabled]="disabled" [max]="maxNumGen" [min]="minNumGen" [step]="step"
+                [discrete]="thumbLabel" [showTickMarks]="showTicks">
+                <input matSliderThumb [(ngModel)]="generate" #slider>
+            </mat-slider>
+        </div>
+        <div class="slider-parent">
+            <div class="label-parent">
+                <label id="slider-label-name" class="slider-label-name">Timer:</label>
+                <label class="slider-label-value">{{time + ' Seconds'}}</label>
+            </div>
+            <mat-slider class="slider" [disabled]="!timeMode" [max]="maxTimer" [min]="minTimer" [step]="stepTimer"
+                [discrete]="thumbLabel" [showTickMarks]="showTicks">
+                <input matSliderThumb [(ngModel)]="time" #slider>
+            </mat-slider>
+        </div>
+        <p class="button-parent">
+            <button mat-raised-button color="primary" (click)="saveSettings()">Save Settings</button>
+        </p>
+    </div>
+</div>

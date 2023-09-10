@@ -1,0 +1,62 @@
+<!-- bingo-board.component.html -->
+<div class="game-board">
+    <div class="number-parent">
+        <div class="number-list">
+            <div class="number" *ngFor="let number of numbers" (click)="toggleNumber(number)"
+                [ngClass]="{'marked': number.marked && !number.used, 'hold': number.hold, 'used': number.used && !number.marked, 'selected': number.used && number.marked}">
+                {{number.value}}
+            </div>
+        </div>
+        <div class="operations-parent">
+            <div class="operations-left">
+                <button class="bingo-button" (click)="add()" [disabled]="select.length == 0"
+                    [class.disabled]="select.length == 0"><i class="fa fa-plus" aria-hidden="true"></i> </button>
+                <button class="bingo-button" (click)="subtract()"
+                    [disabled]="select.length != 2 || select[0].value - select[1].value <= 0"
+                    [class.disabled]="select.length != 2 || select[0].value - select[1].value <= 0"><i class="fa fa-minus" aria-hidden="true"></i>
+                </button>
+                <button class="bingo-button" (click)="multiply()" [disabled]="select.length == 0"
+                    [class.disabled]="select.length == 0"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <button class="bingo-button" (click)="divide()"
+                    [disabled]="select.length != 2 || select[0].value/select[1].value % 1 !== 0"
+                    [class.disabled]="select.length != 2 || select[0].value/select[1].value % 1 !== 0"><i class="fa-solid fa-divide"></i></button>
+            </div>
+            <div class="operations-bingo">
+                <button class="bingo-button" (click)="finishBingo()" [disabled]="!foundBingo" [class.disabled]="!foundBingo">MANGO</button>
+            </div>
+            <div class="operations-right">
+                <button class="bingo-button" (click)="verify()" [disabled]="select.length != 1"
+                    [class.disabled]="select.length != 1">Verify <i class="fa fa-check-circle" aria-hidden="true"></i>
+                </button>
+
+                <button class="bingo-button" (click)="clear()">Clear</button>
+                <button class="bingo-button" (click)="clearAll()">Clear All</button>
+            </div>
+        </div>
+        <div class="formula-parent" *ngIf="!setBingo">{{this.textOutput()}}</div>
+        <div class="formula-parent-mango" *ngIf="setBingo">Mang<img src="../../assets/mango-svgrepo-com.svg" alt="Mango" class="small-mango"></div>
+        <div class="number-list" [style.height]="'35%'">
+            <div class="number" *ngFor="let phantom of phantom" (click)="togglePhantom(phantom)"
+                [ngClass]="{'marked': phantom.marked}">
+                {{phantom.value}}
+            </div>
+        </div>
+    </div>
+    <div class="bingo-parent">
+        <div class="bingo-board" [ngStyle]="{ 'grid-template-columns': 'repeat('+size+', 1fr)' }">
+            <div class="square" *ngFor="let square of squares" (click)="toggleSquare(square)"
+                [ngClass]="{'marked': square.marked && !square.complete, 'complete': square.complete && !square.marked, 'selected': square.complete && square.marked}">
+                {{square.value}}
+            </div>
+        </div>
+        <div class="bingo-info">
+            <p class="bingo-info-turn">{{ timeM ? countDown + ' seconds until new numbers!' : 'Turn ' + turn }}</p>
+            <div class="bingo-info-buttons">
+                <button class="bingo-button" (click)="nextTurn()">{{ timeM ? (timerStarted ? 'Pause' : 'Start') : 'Next Turn'}}</button>
+                <button class="bingo-button" (click)="reset()">Reset </button>
+                <!-- <button class="bingo-button" (click)="checkBingo()" [disabled]="!bingoMode">Check Bingo</button> -->
+            </div>
+            <!-- <p class="bingo-info-bingo">{{ foundBingo ? 'BINGO' : ''}}</p> -->
+        </div>
+    </div>
+</div>
