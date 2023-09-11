@@ -505,6 +505,7 @@ export class BingoBoardComponent {
     }
     if (data.action == 'end') {
       this.stopTimer();
+      this.setBingo = true;
     }
   }
 

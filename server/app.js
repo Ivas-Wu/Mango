@@ -14,7 +14,7 @@ const gameBoardSize = {};
 const gameGenNum = {};
 const gameTimer = {};
 const gameCompletion = {};
-const gameComplete = {};
+const gameStatus = {}; // 0 not started, 1 started, 2 ended
 const gameTurnTimer = {};
 
 app.get('/', (req, res) => {
@@ -56,11 +56,14 @@ wss.on('connection', (ws) => {
       if (index !== -1) {
         session.splice(index, 1);
         if (gameSessions[sessionId].length == 0) {
-          gameComplete[sessionId] = true;
+          gameStatus[sessionId] = 0;
           clearTimeout(gameTurnTimer[sessionId]);
           gameTurnTimer[sessionId] = null;
         }
-        console.log(session); // shift leader if leader left TODO
+        else {
+          countPlayers(sessionId);
+        }
+        // console.log(session); // shift leader if leader left TODO
       }
     }
   });
@@ -87,10 +90,14 @@ function handleJoin(ws, data) {
     // Add the client to the specified game session
     gameSessions[sessionId].push(ws);
 
-    // Notify the client that they've successfully joined the session
-    ws.send(JSON.stringify({ action: 'joined', sessionId: sessionId}));
-    ws.send(JSON.stringify({ leader: leader }));
+    if (gameStatus[sessionId]) {
+      // Maybe let them know game is in progress already?
+    }
 
+    // Notify the client that they've successfully joined the session
+    ws.send(JSON.stringify({ action: 'joined', sessionId: sessionId }));
+    ws.send(JSON.stringify({ leader: leader }));
+    countPlayers(sessionId);
   } else {
     // Handle invalid or missing sessionId
     ws.send(JSON.stringify({ action: 'error', message: 'Invalid sessionId' }));
@@ -100,17 +107,17 @@ function handleJoin(ws, data) {
 function handleStart(ws, data) {
   const { sessionId, boardSize, numGen, timer, completion } = data;
   if (sessionId && boardSize != undefined && numGen != undefined && timer != undefined && completion != undefined) {
-      gameBoardSize[sessionId] = boardSize;
-      gameGenNum[sessionId] = numGen;
-      gameTimer[sessionId]= timer;
-      gameCompletion[sessionId] = completion;
-      gameComplete[sessionId] = false;
+    gameBoardSize[sessionId] = boardSize;
+    gameGenNum[sessionId] = numGen;
+    gameTimer[sessionId] = timer;
+    gameCompletion[sessionId] = completion;
+    gameStatus[sessionId] = 1;
 
-      gameSessions[sessionId].forEach(element => {
-        // Timer UI is run in client and timer countdown is done on server atm without periodic updates so it can get desynced
-        element.send(JSON.stringify({ action: 'start', board: generateBoard(boardSize), boardSize: boardSize, timer: timer, completion: completion }));
-      });
-      sendNumbers(sessionId);
+    gameSessions[sessionId].forEach(element => {
+      // Timer UI is run in client and timer countdown is done on server atm without periodic updates so it can get desynced
+      element.send(JSON.stringify({ action: 'start', board: generateBoard(boardSize), boardSize: boardSize, timer: timer, completion: completion }));
+    });
+    sendNumbers(sessionId);
   } else {
     ws.send(JSON.stringify({ action: 'error', message: 'Invalid something' }));
   }
@@ -119,13 +126,13 @@ function handleStart(ws, data) {
 function handlePlayAgain(ws, data) {
   const { sessionId } = data;
   if (sessionId) {
-      gameComplete[sessionId] = false;
+    gameStatus[sessionId] = 1;
 
-      gameSessions[sessionId].forEach(element => {
-        // Timer UI is run in client and timer countdown is done on server atm without periodic updates so it can get desynced
-        element.send(JSON.stringify({ action: 'start', board: generateBoard(gameBoardSize[sessionId]), boardSize: gameBoardSize[sessionId], timer: gameTimer[sessionId], completion: gameCompletion[sessionId] }));
-      });
-      sendNumbers(sessionId);
+    gameSessions[sessionId].forEach(element => {
+      // Timer UI is run in client and timer countdown is done on server atm without periodic updates so it can get desynced
+      element.send(JSON.stringify({ action: 'start', board: generateBoard(gameBoardSize[sessionId]), boardSize: gameBoardSize[sessionId], timer: gameTimer[sessionId], completion: gameCompletion[sessionId] }));
+    });
+    sendNumbers(sessionId);
   } else {
     ws.send(JSON.stringify({ action: 'error', message: 'Invalid sessionId' }));
   }
@@ -133,45 +140,54 @@ function handlePlayAgain(ws, data) {
 
 function handleWin(ws, data) {
   const { sessionId, name } = data;
-  if (sessionId && name ) {
-      gameComplete[sessionId] = true;
-      ws.send(JSON.stringify({ action: 'end'}));
-      console.log("WIN");
+  if (sessionId && name) {
+    gameStatus[sessionId] = 2;
+    gameSessions[sessionId].forEach(element => {
+      element.send(JSON.stringify({ action: 'end', name: name }));
+    });
+    console.log("WIN");
   } else {
     ws.send(JSON.stringify({ action: 'error', message: 'Invalid sessionId' }));
   }
 }
 
+function countPlayers(sessionId) {
+  gameSessions[sessionId].forEach(element => {
+    element.send(JSON.stringify({ countPlayers: gameSessions[sessionId].length }));
+  });
+}
+
 function sendNumbers(sessionId) {
-  if (!gameComplete[sessionId]) {
+  if (gameStatus[sessionId] == 1) {
+    nums = generateNumbers(gameGenNum[sessionId], gameBoardSize[sessionId]);
     gameSessions[sessionId].forEach(element => {
-      element.send(JSON.stringify({ numbers: generateNumbers(gameGenNum[sessionId], gameBoardSize[sessionId]) }));
+      element.send(JSON.stringify({ numbers: nums }));
     });
     t = setTimeout(() => {
       sendNumbers(sessionId);
-    }, gameTimer[sessionId]*1000);
+    }, gameTimer[sessionId] * 1000);
     gameTurnTimer[sessionId] = t;
-  } 
+  }
   else {
     console.log("Game is done!");
   }
 }
 
-function generateBoard(size){
+function generateBoard(size) {
   let returnVal = [];
   const sqaureValues = generateNonDuplicateIntegers(1, size * size * 2, size * size);
   for (let i = 0; i < size * size; i++) {
-      returnVal.push({
-        value: sqaureValues[i],
-        marked: false,
-        complete: false,
-        children: [],
-      });
+    returnVal.push({
+      value: sqaureValues[i],
+      marked: false,
+      complete: false,
+      children: [],
+    });
   }
   return returnVal;
 }
 
-function generateNumbers(num, size) { 
+function generateNumbers(num, size) {
   let returnVal = [];
   const gridNumbers = generateNonDuplicateIntegers(1, 2 * size + 1, num);
   for (let i = 0; i < num; i++) {

@@ -37,6 +37,7 @@ export class OnlinePopupComponent {
   inSession: boolean = false; //TODO close it when connection closes
   leader:boolean = false;
   sessionID:string = "";
+  playerCount = 0;
 
   constructor(private elRef: ElementRef, private popupService: InfopopupService, private ws: WebsocketService) {
     
@@ -102,6 +103,9 @@ export class OnlinePopupComponent {
     }
     if (data.action == 'start') { //start of a new game
       this.closePopup();
+    }
+    if (data.countPlayers) { //start of a new game
+      this.playerCount = data.countPlayers;
     }
     // Other settings values from the leader if you are not the leader TODO
   }
