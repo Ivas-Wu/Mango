@@ -59,7 +59,7 @@
                 </mat-slider>
             </div>
             <p class="button-parent">
-                <button mat-raised-button (click)="startGame()" color="primary" [disabled]="!inSession || !leader || playerCount <= 1">Start
+                <button mat-raised-button (click)="startGame()" color="primary" [disabled]="!inSession || !leader || playerCount < 1">Start
                     Game</button>
             </p>
         </div>
