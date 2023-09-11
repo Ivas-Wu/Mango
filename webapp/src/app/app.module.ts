@@ -12,6 +12,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { OnlinePopupComponent } from './online-popup/online-popup.component';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     BingoHeaderComponent,
     InfopopupComponent,
     SettingpopupComponent,
+    OnlinePopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

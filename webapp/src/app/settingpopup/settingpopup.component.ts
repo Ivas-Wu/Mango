@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { SettingpopupService } from '../settingpopup.service';
 import { SettingOptionsService } from '../setting-options.service';
 
@@ -8,12 +8,6 @@ import { SettingOptionsService } from '../setting-options.service';
   styleUrls: ['./settingpopup.component.css']
 })
 export class SettingpopupComponent implements OnInit{
-  @Output() boardSize = new EventEmitter<number>();
-  @Output() numGen = new EventEmitter<number>();
-  @Output() timer = new EventEmitter<number>();
-  @Output() complete = new EventEmitter<boolean>();
-  @Output() timeM = new EventEmitter<boolean>();
-
   isPopupVisible: boolean = false;
   newOpen: boolean = false;
 

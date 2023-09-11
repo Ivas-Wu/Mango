@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RandomNumberGeneratorService } from '../random-number-generator-service.service';
 import { SettingOptionsService } from '../setting-options.service';
+import { WebsocketService } from '../websocket.service';
 
 type gridSquare = {
   value: number;
@@ -32,6 +33,10 @@ type selectNumber = phantomNumber | gridNumber;
   styleUrls: ['./bingo-board.component.css']
 })
 export class BingoBoardComponent {
+  online: boolean = false;
+  sessionId: number = 0;
+  leader: boolean = false;
+
   size: number = 3;
   numberGen: number = 3;
   timer: number = 60;
@@ -45,37 +50,71 @@ export class BingoBoardComponent {
 
   turn: number = 0;
   countDown: number = 60;
-  timerHold:any;
+  timerHold: any;
   timerStarted: boolean = false;
   foundBingo: boolean = false;
   setBingo: boolean = false;
 
-  constructor(private randomNumberGeneratorService: RandomNumberGeneratorService, private settingService: SettingOptionsService) {
+  constructor(private randomNumberGeneratorService: RandomNumberGeneratorService, private settingService: SettingOptionsService, private ws: WebsocketService) {
     this.settingService.boardSize$.subscribe((boardSize) => {
-      this.reset();
-      this.makeBoard(boardSize);
-      this.size = boardSize;
+      if (!this.online) {
+        this.reset();
+        this.makeBoard(boardSize);
+        this.size = boardSize;
+      }
     });
 
     this.settingService.numberGeneration$.subscribe((numberGeneration) => {
-      this.reset();
-      this.numberGen = numberGeneration;
+      if (!this.online) {
+        this.reset();
+        this.numberGen = numberGeneration;
+      }
     });
 
     this.settingService.turnTimer$.subscribe((turnTimer) => {
-      this.reset();
-      this.timer = turnTimer;
-      this.countDown = turnTimer;
+      if (!this.online) {
+        this.reset();
+        this.timer = turnTimer;
+        this.countDown = turnTimer;
+      }
     });
 
     this.settingService.isTimerMode$.subscribe((isTimerMode) => {
-      this.reset();
-      this.timeM = isTimerMode;
+      if (!this.online) {
+        this.reset();
+        this.timeM = isTimerMode;
+      }
     });
 
     this.settingService.isCompletionMode$.subscribe((isCompletionMode) => {
-      this.reset();
-      this.completion = isCompletionMode;
+      if (!this.online) {
+        this.reset();
+        this.completion = isCompletionMode;
+      }
+    });
+
+    this.ws.messageSubject$.subscribe((message) => {
+      if (message != "") {
+        this.handleMessage(message);
+      }
+    });
+
+    this.ws.isConnected$.subscribe((connected) => {
+      this.online = connected;
+      if (!this.online) {
+        this.reset();
+        this.size = settingService.getBoardSize();
+        this.numberGen = settingService.getNumberGen();
+        this.timer = settingService.getTurnTimer();
+        this.countDown = this.timer;
+        this.timeM = settingService.getTimerMode();
+        this.completion = settingService.getCompletionMode();
+        this.makeBoard(this.size);
+      }
+    });
+
+    this.ws.leader$.subscribe((leader) => {
+      this.leader = leader;
     });
   }
 
@@ -92,7 +131,7 @@ export class BingoBoardComponent {
     }
   }
 
-  generateNumbers() { //Move to server in future
+  generateNumbers() { 
     const gridNumbers = this.randomNumberGeneratorService.generateNonDuplicateIntegers(1, 2 * this.size + 1, this.numberGen);
     for (let i = 0; i < this.numberGen; i++) {
       this.numbers.push({
@@ -107,12 +146,11 @@ export class BingoBoardComponent {
   nextTurn() {
     if (this.timeM) {
       if (this.timerStarted) {
-        // Shouldnt be a thing in online
         this.stopTimer();
       }
       else {
         this.startTimer();
-        if (this.countDown == this.timer){
+        if (this.countDown == this.timer) {
           this.generateNumbers();
         }
       }
@@ -187,6 +225,10 @@ export class BingoBoardComponent {
     }
   }
 
+  leaveOnline() {
+    this.leaveSession();
+  }
+
   checkBingo() {
     if (this.completion) {
       this.foundBingo = true;
@@ -213,6 +255,14 @@ export class BingoBoardComponent {
   finishBingo() {
     if (this.foundBingo) {
       this.setBingo = true;
+      if (this.online) {
+        const messageObject = {
+          action: 'win',
+          sessionId: this.sessionId,
+          name: "TIMMY"
+        };
+        this.ws.sendMessage(JSON.stringify(messageObject));
+      }
     }
     if (this.timeM) {
       this.stopTimer();
@@ -413,7 +463,56 @@ export class BingoBoardComponent {
   restartTimer() {
     this.stopTimer();
     this.countDown = this.timer;
-    this.generateNumbers();
+    if (!this.online) {
+      this.generateNumbers();
+    }
     this.startTimer();
+  }
+
+  leaveSession() {
+    this.ws.disconnect();
+  }
+
+  handleMessage(message: string) {
+    const data = JSON.parse(message);
+    console.log(data);
+    if (data.sessionId) {
+      this.sessionId = data.sessionId;
+    }
+    if (data.board) {
+      this.squares = [];
+      this.size = data.boardSize;
+      data.board.forEach((b:gridSquare) => {
+        this.squares.push(b);
+      })
+    }
+    if (data.numbers) {
+      data.numbers.forEach((n:gridNumber) => {
+        this.numbers.push(n);
+      });
+    }
+    if (data.timer) {
+      this.timer = data.timer;
+      this.countDown = this.timer;
+      this.timeM = true; //only option atm
+    }
+    if (data.completion) {
+      this.completion = data.completion;
+    }
+    if (data.action == 'start') { //start of a new game
+      this.reset();
+      this.startTimer();
+    }
+    if (data.action == 'end') {
+      this.stopTimer();
+    }
+  }
+
+  playAgain() {
+    const messageObject = {
+      action: 'playAgain',
+      sessionId: this.sessionId
+    };
+    this.ws.sendMessage(JSON.stringify(messageObject));
   }
 }

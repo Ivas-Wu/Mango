@@ -17,4 +17,8 @@ export class BingoHeaderComponent {
   openSettingPopup() {
     this.settingPopupService.openPopup();
   }
+
+  openOnlinePopup() {
+    this.infoPopupService.openOnlinePopup();
+  }
 }

@@ -6,7 +6,10 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class InfopopupService {
   private popupVisibleSubject = new BehaviorSubject<boolean>(false);
+  private onlinePopupVisibleSubject = new BehaviorSubject<boolean>(false);
+  
   public popupVisible$ = this.popupVisibleSubject.asObservable();
+  public onlinePopupVisibleSubject$ = this.onlinePopupVisibleSubject.asObservable();
 
   constructor() { }
 
@@ -16,5 +19,13 @@ export class InfopopupService {
 
   closePopup() {
     this.popupVisibleSubject.next(false);
+  }
+
+  openOnlinePopup() {
+    this.onlinePopupVisibleSubject.next(true);
+  }
+
+  closeOnlinePopup() {
+    this.onlinePopupVisibleSubject.next(false);
   }
 }
