@@ -97,7 +97,11 @@ export class OnlinePopupComponent {
     const data = JSON.parse(message);
     console.log(data);
     if (data.leader) {
+      console.log(data.leader)
       this.ws.setLeader(true);
+    }
+    if (data.action == 'start') { //start of a new game
+      this.closePopup();
     }
     // Other settings values from the leader if you are not the leader TODO
   }
