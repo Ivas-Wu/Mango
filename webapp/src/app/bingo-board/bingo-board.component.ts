@@ -35,7 +35,7 @@ type selectNumber = phantomNumber | gridNumber;
 export class BingoBoardComponent {
   online: boolean = false;
   sessionId: number = 0;
-  leader: boolean = false;
+  you: number = -1;
 
   size: number = 3;
   numberGen: number = 3;
@@ -111,10 +111,6 @@ export class BingoBoardComponent {
         this.completion = settingService.getCompletionMode();
         this.makeBoard(this.size);
       }
-    });
-
-    this.ws.leader$.subscribe((leader) => {
-      this.leader = leader;
     });
   }
 
@@ -506,6 +502,10 @@ export class BingoBoardComponent {
     if (data.action == 'end') {
       this.stopTimer();
       this.setBingo = true;
+    }
+    if (data.playerNumber) { //start of a new game
+      // this.playerCount = data.countPlayers;
+      this.you = data.playerNumber;
     }
   }
 

@@ -10,11 +10,9 @@ export class WebsocketService {
 
   private messageSubject = new BehaviorSubject<string>("");
   private isConnected = new BehaviorSubject<boolean>(false);
-  private leader = new BehaviorSubject<boolean>(false);
 
   public isConnected$ = this.isConnected.asObservable();
   public messageSubject$ = this.messageSubject.asObservable();
-  public leader$ = this.leader.asObservable();
 
   constructor() {
   }
@@ -41,7 +39,6 @@ export class WebsocketService {
   disconnect() {
     if (this.socket && this.socket.readyState === WebSocket.OPEN) {
       this.socket.close();
-      this.setLeader(false);
     }
   }
 
@@ -55,9 +52,4 @@ export class WebsocketService {
       this.socket.send(message);
     }
   }
-
-  setLeader(status: boolean) {
-    this.leader.next(status);
-  }
-
 }

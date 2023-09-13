@@ -35,7 +35,6 @@ export class OnlinePopupComponent {
 
   completion:boolean = false;
   inSession: boolean = false; //TODO close it when connection closes
-  leader:boolean = false;
   sessionID:string = "";
   playerCount = 0;
   you = -1;
@@ -58,10 +57,6 @@ export class OnlinePopupComponent {
     this.ws.isConnected$.subscribe((connected) => {
       this.inSession = connected;
       console.log(this.inSession);
-    })
-
-    this.ws.leader$.subscribe((leader) => {
-      this.leader = leader;
     })
   }
 
@@ -101,11 +96,6 @@ export class OnlinePopupComponent {
 
   handleMessage(message: string) {
     const data = JSON.parse(message);
-    console.log(data);
-    if (data.leader) {
-      console.log(data.leader)
-      this.ws.setLeader(true);
-    }
     if (data.action == 'start') { //start of a new game
       this.closePopup();
     }

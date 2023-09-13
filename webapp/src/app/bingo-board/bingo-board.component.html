@@ -53,7 +53,7 @@
             <p class="bingo-info-turn">{{ timeM ? countDown + ' seconds until new numbers!' : 'Turn ' + turn }}</p>
             <div class="bingo-info-buttons">
                 <button class="bingo-button" *ngIf="!online" (click)="nextTurn()">{{ timeM ? (timerStarted ? 'Pause' : 'Start') : 'Next Turn'}}</button>
-                <button class="bingo-button" *ngIf="online" [disabled]="!setBingo || !leader" [class.disabled]="!setBingo || !leader" (click)="playAgain()">Play Again!</button>
+                <button class="bingo-button" *ngIf="online" [disabled]="!setBingo || you != 0" [class.disabled]="!setBingo || you != 0" (click)="playAgain()">Play Again!</button>
                 <button class="bingo-button" *ngIf="!online" (click)="reset()">Reset</button>
                 <button class="bingo-button" *ngIf="online" (click)="leaveOnline()">Exit</button>
                 <!-- <button class="bingo-button" (click)="checkBingo()" [disabled]="!bingoMode">Check Bingo</button> -->
