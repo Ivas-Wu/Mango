@@ -59,7 +59,8 @@
 
 .join-title-text {
     width: 90%;
-    font-size: 2em;
+    height: 100%;
+    font-size: 1.5em;
     font-family: 'nyt-karnakcondensed';
     font-weight: 700;
     letter-spacing: 0.01em;
@@ -81,6 +82,7 @@
 
 .join-button {
     width: 30%;
+    font-size: 0.75em;
 }
 
 .title {
@@ -104,19 +106,16 @@
 
 .session-display-title {
     height: 15%;
-    margin: 0;
     font-size: 1.3em;
 }
 
 .session-display-text {
     height: 10%;
-    margin: 0;
     font-size: 1em;
 }
 
 .session-visual-text {
     height: 10%;
-    margin: 0;
     font-size: 1em;
 }
 

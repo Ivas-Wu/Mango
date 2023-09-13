@@ -11,15 +11,15 @@
                 </button>
             </div>
             <div class="session-display">
-                <h1 class="session-display-title">
+                <div class="session-display-title">
                     {{ you == 0 ? 'Player 1' : 'Not Player 1' }}
-                </h1>
-                <h3 class="session-display-text">
+                </div>
+                <div class="session-display-text">
                     {{ you == 0 ? 'Only you can adjust the settings! Be sure to start the game when you are ready.' :
                     'Only player 1 will be able to adjust the settings! Please wait for them to start the game.' }}
-                </h3>
+                </div>
                 <h3 class="session-visual-text">
-                    {{'Player Count: ' + playerCount}}
+                    {{'Players: ' + playerCount + '/8'}}
                 </h3>
                 <div class="session-display-visual">
                     <div class="ball-container" *ngFor="let _ of [].constructor(playerCount); let i = index">
@@ -79,9 +79,9 @@
     <div class="join-overlay" *ngIf="!inSession">
         <div class="popup">
             <div class="join-title">
-                <h1 class="join-title-text">
+                <div class="join-title-text">
                     Join a online session!
-                </h1>
+                </div>
                 <button mat-icon-button (click)="closePopup()" color="primary" aria-label="Replace with close button">
                     X
                 </button>
