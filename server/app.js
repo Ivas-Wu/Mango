@@ -63,7 +63,6 @@ wss.on('connection', (ws) => {
         else {
           countPlayers(sessionId);
         }
-        // console.log(session); // shift leader if leader left TODO
       }
     }
   });
@@ -77,14 +76,9 @@ server.listen(port, () => {
 function handleJoin(ws, data) {
   const { sessionId } = data;
   if (sessionId) {
-    let leader = false;
     // Create a new session if it doesn't exist
     if (!gameSessions[sessionId]) {
       gameSessions[sessionId] = [];
-    }
-
-    if (gameSessions[sessionId].length == 0) {
-      leader = true;
     }
 
     // Add the client to the specified game session
@@ -96,7 +90,6 @@ function handleJoin(ws, data) {
 
     // Notify the client that they've successfully joined the session
     ws.send(JSON.stringify({ action: 'joined', sessionId: sessionId }));
-    ws.send(JSON.stringify({ leader: leader }));
     countPlayers(sessionId);
   } else {
     // Handle invalid or missing sessionId
