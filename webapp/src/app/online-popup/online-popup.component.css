@@ -41,10 +41,10 @@
 .popup {
     background-color: white;
     width: 90%;
-    height: 96%;
+    height: 91%;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    padding: 0 5% 5% 5%;
+    padding: 5%;
     display: flex;
     flex-direction: column;
     z-index: 1001;
@@ -52,10 +52,6 @@
 
 .join-title {
     height: 20%;
-    font-size: 3em;
-    font-family: 'nyt-karnakcondensed';
-    font-weight: 700;
-    letter-spacing: 0.01em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,6 +59,10 @@
 
 .join-title-text {
     width: 90%;
+    font-size: 2em;
+    font-family: 'nyt-karnakcondensed';
+    font-weight: 700;
+    letter-spacing: 0.01em;
     display: flex;
     justify-content: center;
 }
@@ -84,8 +84,8 @@
 }
 
 .title {
-    height: 15%;
-    font-size: 4em;
+    height: 10%;
+    font-size: 2em;
     font-family: 'nyt-karnakcondensed';
     font-weight: 700;
     letter-spacing: 0.01em;
@@ -95,7 +95,7 @@
 }
 
 .session-display {
-    height: 45%;
+    height: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
