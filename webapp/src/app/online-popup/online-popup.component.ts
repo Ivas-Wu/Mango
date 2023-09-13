@@ -38,6 +38,7 @@ export class OnlinePopupComponent {
   leader:boolean = false;
   sessionID:string = "";
   playerCount = 0;
+  you = 0;
 
   constructor(private elRef: ElementRef, private popupService: InfopopupService, private ws: WebsocketService) {
     
@@ -87,11 +88,15 @@ export class OnlinePopupComponent {
     }
   }
 
-  closeSession() {
-    if (this.inSession) {
-      this.ws.disconnect();
-    }
-    this.closePopup();
+  // closeSession() {
+  //   if (this.inSession) {
+  //     this.disconnect();
+  //   }
+  //   this.closePopup();
+  // }
+
+  disconnect() {
+    this.ws.disconnect();
   }
 
   handleMessage(message: string) {
@@ -106,6 +111,7 @@ export class OnlinePopupComponent {
     }
     if (data.countPlayers) { //start of a new game
       this.playerCount = data.countPlayers;
+      this.you = this.playerCount - 1;
     }
     // Other settings values from the leader if you are not the leader TODO
   }
