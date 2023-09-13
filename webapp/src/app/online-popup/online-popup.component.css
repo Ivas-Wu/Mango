@@ -105,16 +105,19 @@
 .session-display-title {
     height: 15%;
     margin: 0;
+    font-size: 1.3em;
 }
 
 .session-display-text {
     height: 10%;
     margin: 0;
+    font-size: 1em;
 }
 
 .session-visual-text {
     height: 10%;
     margin: 0;
+    font-size: 1em;
 }
 
 .session-display-visual {

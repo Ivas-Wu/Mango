@@ -38,7 +38,7 @@ export class OnlinePopupComponent {
   leader:boolean = false;
   sessionID:string = "";
   playerCount = 0;
-  you = 0;
+  you = -1;
 
   constructor(private elRef: ElementRef, private popupService: InfopopupService, private ws: WebsocketService) {
     
@@ -111,7 +111,7 @@ export class OnlinePopupComponent {
     }
     if (data.countPlayers) { //start of a new game
       this.playerCount = data.countPlayers;
-      this.you = this.playerCount - 1;
+      this.you = data.playerNumber;
     }
     // Other settings values from the leader if you are not the leader TODO
   }

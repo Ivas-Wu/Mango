@@ -152,8 +152,8 @@ function handleWin(ws, data) {
 }
 
 function countPlayers(sessionId) {
-  gameSessions[sessionId].forEach(element => {
-    element.send(JSON.stringify({ countPlayers: gameSessions[sessionId].length }));
+  gameSessions[sessionId].forEach((element, index) => {
+    element.send(JSON.stringify({ countPlayers: gameSessions[sessionId].length, playerNumber: index }));
   });
 }
 
