@@ -1,14 +1,8 @@
 <div *ngIf="isPopupVisible" class="overlay">
     <div class="popup-overlay" *ngIf="inSession">
         <div class="popup">
-            <!--      TODO     -->
-            <div class="title"> 
-                <h1 class="title">
-                    Game Settings!
-                </h1>
-                <button mat-icon-button (click)="disconnect()" color="primary" aria-label="Replace with close button">
-                    X
-                </button>
+            <div class="title">
+                <h2 mat-dialog-title>Game Settings</h2>
             </div>
             <div class="session-display">
                 <div class="session-display-title">
@@ -30,13 +24,13 @@
             </div>
             <div class="game-parent">
                 <div class="check-slider-parent">
-                    <i class="fa fa-th fa-2x" aria-hidden="true"></i>
+                    <i class="fa fa-th" aria-hidden="true"></i>
                     <p class="check-slider-text">Completion Mode</p>
                     <mat-slide-toggle (click)="toggleCompletionMode()" class="check-slider" color="primary"
                         [checked]="completion" disabled="you != 0">
                     </mat-slide-toggle>
                 </div>
-                
+
                 <div class="slider-parent">
                     <div class="label-parent">
                         <label id="slider-label-name" class="slider-label-name">Board Size:</label>
@@ -62,8 +56,8 @@
                         <label id="slider-label-name" class="slider-label-name">Timer:</label>
                         <label class="slider-label-value">{{time + ' Seconds'}}</label>
                     </div>
-                    <mat-slider class="slider" [disabled]="you != 0" [max]="maxTimer" [min]="minTimer" [step]="stepTimer"
-                        [discrete]="thumbLabel" [showTickMarks]="showTicks">
+                    <mat-slider class="slider" [disabled]="you != 0" [max]="maxTimer" [min]="minTimer"
+                        [step]="stepTimer" [discrete]="thumbLabel" [showTickMarks]="showTicks">
                         <input matSliderThumb [(ngModel)]="time" #slider>
                     </mat-slider>
                 </div>
@@ -73,26 +67,28 @@
                 <button mat-raised-button (click)="startGame()" color="primary"
                     [disabled]="!inSession || you != 0 || playerCount < 1">Start
                     Game</button>
+                <button mat-raised-button (click)="disconnect()" color="primary">
+                    Disconnect</button>
             </p>
         </div>
     </div>
     <div class="join-overlay" *ngIf="!inSession">
         <div class="popup">
             <div class="join-title">
-                <div class="join-title-text">
+                <h2 mat-dialog-title>
                     Join a online session!
-                </div>
-                <button mat-icon-button (click)="closePopup()" color="primary" aria-label="Replace with close button">
-                    X
-                </button>
+                </h2>
             </div>
-            <div class="join-parent">
+            <div class="join-body">
                 <mat-form-field class="join-id">
                     <mat-label>Session ID:</mat-label>
                     <input matInput placeholder="1234" [(ngModel)]="sessionID">
                 </mat-form-field>
+            </div>
+            <div class="join-end">
                 <button mat-raised-button (click)="joinSession()" [disabled]="inSession || sessionID == ''"
                     color="primary" class="join-button">Join Session</button>
+                <button mat-raised-button (click)="closePopup()" color="primary" class="join-button">Close</button>
             </div>
         </div>
     </div>

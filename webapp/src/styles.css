@@ -26,19 +26,19 @@
     --transition-main: .175, .685, .32;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
     :root {
         --header-padding-x: 20px;
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 64em) {
     :root {
         --header-padding-x: 24px;
     }
 }
 
-@media (min-width: 415px) {
+@media (min-width: 26em) {
     :root {
         --header-height: 65px;
     }
