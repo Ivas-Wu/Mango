@@ -1,95 +1,91 @@
 <div *ngIf="isPopupVisible" class="overlay">
-    <div class="popup-overlay" *ngIf="inSession">
-        <div class="popup">
-            <div class="title">
-                <h2 mat-dialog-title>Game Settings</h2>
-            </div>
-            <div class="session-display">
-                <div class="session-display-title">
-                    {{ you == 0 ? 'Player 1' : 'Not Player 1' }}
-                </div>
-                <div class="session-display-text">
-                    {{ you == 0 ? 'Only you can adjust the settings! Be sure to start the game when you are ready.' :
-                    'Only player 1 will be able to adjust the settings! Please wait for them to start the game.' }}
-                </div>
-                <h3 class="session-visual-text">
-                    {{'Players: ' + playerCount + '/8'}}
-                </h3>
-                <div class="session-display-visual">
-                    <div class="ball-container" *ngFor="let _ of [].constructor(playerCount); let i = index">
-                        <div *ngIf="you != i" class="ball"></div>
-                        <div *ngIf="you == i" class="ball-me"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="game-parent">
-                <div class="check-slider-parent">
-                    <i class="fa fa-th" aria-hidden="true"></i>
-                    <p class="check-slider-text">Completion Mode</p>
-                    <mat-slide-toggle (click)="toggleCompletionMode()" class="check-slider" color="primary"
-                        [checked]="completion" disabled="you != 0">
-                    </mat-slide-toggle>
-                </div>
-
-                <div class="slider-parent">
-                    <div class="label-parent">
-                        <label id="slider-label-name" class="slider-label-name">Board Size:</label>
-                        <label class="slider-label-value">{{size}}</label>
-                    </div>
-                    <mat-slider class="slider" [disabled]="you != 0" [max]="maxBoardSize" [min]="minBoardSize"
-                        [step]="step" [discrete]="thumbLabel" [showTickMarks]="showTicks">
-                        <input matSliderThumb [(ngModel)]="size" #slider>
-                    </mat-slider>
-                </div>
-                <div class="slider-parent">
-                    <div class="label-parent">
-                        <label id="slider-label-name" class="slider-label-name">Number of Cards:</label>
-                        <label class="slider-label-value">{{generate + ' Cards'}}</label>
-                    </div>
-                    <mat-slider class="slider" [disabled]="you != 0" [max]="maxNumGen" [min]="minNumGen" [step]="step"
-                        [discrete]="thumbLabel" [showTickMarks]="showTicks">
-                        <input matSliderThumb [(ngModel)]="generate" #slider>
-                    </mat-slider>
-                </div>
-                <div class="slider-parent">
-                    <div class="label-parent">
-                        <label id="slider-label-name" class="slider-label-name">Timer:</label>
-                        <label class="slider-label-value">{{time + ' Seconds'}}</label>
-                    </div>
-                    <mat-slider class="slider" [disabled]="you != 0" [max]="maxTimer" [min]="minTimer"
-                        [step]="stepTimer" [discrete]="thumbLabel" [showTickMarks]="showTicks">
-                        <input matSliderThumb [(ngModel)]="time" #slider>
-                    </mat-slider>
-                </div>
-            </div>
-
-            <p class="button-parent">
-                <button mat-raised-button (click)="startGame()" color="primary"
-                    [disabled]="!inSession || you != 0 || playerCount < 1">Start
-                    Game</button>
-                <button mat-raised-button (click)="disconnect()" color="primary">
-                    Disconnect</button>
-            </p>
+    <div class="popup" [class.setting]=true *ngIf="inSession">
+        <div class="title">
+            <h2 mat-dialog-title>Game Settings</h2>
         </div>
+        <div class="session-display">
+            <div class="session-display-title">
+                {{ you == 0 ? 'Player 1' : 'Not Player 1' }}
+            </div>
+            <div class="session-display-text">
+                {{ you == 0 ? 'Only you can adjust the settings! Be sure to start the game when you are ready.' :
+                'Only player 1 will be able to adjust the settings! Please wait for them to start the game.' }}
+            </div>
+            <h3 class="session-visual-text">
+                {{'Players: ' + playerCount + '/8'}}
+            </h3>
+            <div class="session-display-visual">
+                <div class="ball-container" *ngFor="let _ of [].constructor(playerCount); let i = index">
+                    <div *ngIf="you != i" class="ball"></div>
+                    <div *ngIf="you == i" class="ball-me"></div>
+                </div>
+            </div>
+        </div>
+        <div class="game-parent">
+            <div class="check-slider-parent">
+                <i class="fa fa-th" aria-hidden="true"></i>
+                <p class="check-slider-text">Completion Mode</p>
+                <mat-slide-toggle (click)="toggleCompletionMode()" class="check-slider" color="primary"
+                    [checked]="completion" [disabled]="you != 0">
+                </mat-slide-toggle>
+            </div>
+
+            <div class="slider-parent">
+                <div class="label-parent">
+                    <label id="slider-label-name" class="slider-label-name">Board Size:</label>
+                    <label class="slider-label-value">{{size}}</label>
+                </div>
+                <mat-slider class="slider" [disabled]="you != 0" [max]="maxBoardSize" [min]="minBoardSize" [step]="step"
+                    [discrete]="thumbLabel" [showTickMarks]="showTicks">
+                    <input matSliderThumb [(ngModel)]="size" #slider>
+                </mat-slider>
+            </div>
+            <div class="slider-parent">
+                <div class="label-parent">
+                    <label id="slider-label-name" class="slider-label-name">Number of Cards:</label>
+                    <label class="slider-label-value">{{generate + ' Cards'}}</label>
+                </div>
+                <mat-slider class="slider" [disabled]="you != 0" [max]="maxNumGen" [min]="minNumGen" [step]="step"
+                    [discrete]="thumbLabel" [showTickMarks]="showTicks">
+                    <input matSliderThumb [(ngModel)]="generate" #slider>
+                </mat-slider>
+            </div>
+            <div class="slider-parent">
+                <div class="label-parent">
+                    <label id="slider-label-name" class="slider-label-name">Timer:</label>
+                    <label class="slider-label-value">{{time + ' Seconds'}}</label>
+                </div>
+                <mat-slider class="slider" [disabled]="you != 0" [max]="maxTimer" [min]="minTimer" [step]="stepTimer"
+                    [discrete]="thumbLabel" [showTickMarks]="showTicks">
+                    <input matSliderThumb [(ngModel)]="time" #slider>
+                </mat-slider>
+            </div>
+        </div>
+
+        <p class="button-parent">
+            <button mat-raised-button (click)="startGame()" color="primary"
+                [disabled]="!inSession || you != 0 || playerCount < 1">Start
+                Game</button>
+            <button mat-raised-button (click)="disconnect()" color="primary">
+                Disconnect</button>
+        </p>
     </div>
-    <div class="join-overlay" *ngIf="!inSession">
-        <div class="popup">
-            <div class="join-title">
-                <h2 mat-dialog-title>
-                    Join a online session!
-                </h2>
-            </div>
-            <div class="join-body">
-                <mat-form-field class="join-id">
-                    <mat-label>Session ID:</mat-label>
-                    <input matInput placeholder="1234" [(ngModel)]="sessionID">
-                </mat-form-field>
-            </div>
-            <div class="join-end">
-                <button mat-raised-button (click)="joinSession()" [disabled]="inSession || sessionID == ''"
-                    color="primary" class="join-button">Join Session</button>
-                <button mat-raised-button (click)="closePopup()" color="primary" class="join-button">Close</button>
-            </div>
+    <div class="popup" [class.join]=true *ngIf="!inSession">
+        <div class="join-title">
+            <h2 mat-dialog-title>
+                Join a online session!
+            </h2>
+        </div>
+        <div class="join-body">
+            <mat-form-field class="join-id">
+                <mat-label>Session ID:</mat-label>
+                <input matInput placeholder="1234" [(ngModel)]="sessionID">
+            </mat-form-field>
+        </div>
+        <div class="join-end">
+            <button mat-raised-button (click)="joinSession()" [disabled]="inSession || sessionID == ''" color="primary"
+                class="join-button">Join Session</button>
+            <button mat-raised-button (click)="closePopup()" color="primary" class="join-button">Close</button>
         </div>
     </div>
 </div>

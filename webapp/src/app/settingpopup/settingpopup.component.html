@@ -7,7 +7,7 @@
             <div class="check-slider-parent">
                 <i class="fa fa-moon fa-2x" aria-hidden="true"></i>
                 <p class="check-slider-text">Dark Mode</p>
-                <mat-slide-toggle class="check-slider" color="primary" checked="false" disabled="true">
+                <mat-slide-toggle (click)="toggleDarkMode()" class="check-slider" color="black" [checked]="darkMode" disabled="false">
                 </mat-slide-toggle>
             </div>
             <div class="check-slider-parent">

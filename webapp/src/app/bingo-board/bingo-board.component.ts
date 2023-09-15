@@ -344,7 +344,7 @@ export class BingoBoardComponent {
       this.checkBingo();
     }
     else {
-      console.log("no match");
+      console.log("no match"); // Maybe change color of something idk
     }
   }
 
@@ -430,9 +430,6 @@ export class BingoBoardComponent {
   }
 
   textOutput(): string {
-    if (this.setBingo) {
-      return 'BINGO';
-    }
     const selectedNames = this.select.map(item => item.value);
     if (selectedNames.length == 0) {
       if (this.completion) {

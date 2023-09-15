@@ -61,6 +61,6 @@ export class SettingOptionsService {
   getCompletionMode(): boolean {
     return this.isCompletionMode.value;
   }
-  
+
   constructor() { }
 }

@@ -8,12 +8,12 @@
         MANGO
     </h1>
     <menu class="menuRight">
-        <button type="button" id="help-button" (click)="openOnlinePopup()" aria-label="Help">Play Together!
+        <button mat-stroked-button id="onlineButton" (click)="openOnlinePopup()" aria-label="online">Play Together!
         </button>
-        <button type="button" id="help-button" (click)="openInfoPopup()" class="icon" aria-label="Help"><i class="fa fa-question-circle"
-                aria-hidden="true"></i>
+        <button id="helpButton" (click)="openInfoPopup()" class="icon" aria-label="Help">
+            <i class="fa fa-question-circle" aria-hidden="true"></i>
         </button>
-        <button type="button" id="settings-button" (click)="openSettingPopup()" class="icon" aria-label="Settings"><i class="fa fa-cog"
+        <button id="settingsButton" (click)="openSettingPopup()" class="icon" aria-label="Settings"><i class="fa fa-cog"
                 aria-hidden="true"></i>
         </button>
     </menu>

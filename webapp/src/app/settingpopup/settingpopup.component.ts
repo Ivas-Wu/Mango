@@ -35,9 +35,13 @@ export class SettingpopupComponent implements OnInit{
   time: number = 0;
 
   completion:boolean = false;
+  darkMode:boolean = localStorage.getItem('darkMode') ? Boolean(JSON.parse(localStorage.getItem('darkMode')!)) : false;
 
   ngOnInit(): void {
     this.setDefaults();
+    if (this.darkMode) {
+      this.setDarkMode();
+    }
   }
 
   constructor(private elRef: ElementRef, private popupService: SettingpopupService, private settingService: SettingOptionsService) {
@@ -78,6 +82,25 @@ export class SettingpopupComponent implements OnInit{
 
   toggleCompletionMode() {
     this.completion = !this.completion;
+  }
+
+  toggleDarkMode() {
+    this.darkMode = !this.darkMode;
+    localStorage.setItem('darkMode', JSON.stringify(this.darkMode));
+    if (this.darkMode) {
+      this.setDarkMode();
+    }
+    else {
+      this.removeDarkMode();
+    }
+  }
+
+  setDarkMode() {
+    document.body.classList.add("dark");
+  }
+
+  removeDarkMode() {
+    document.body.classList.remove("dark");
   }
 
   @HostListener('document:click', ['$event'])

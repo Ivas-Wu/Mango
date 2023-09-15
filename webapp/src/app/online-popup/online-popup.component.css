@@ -11,49 +11,70 @@
     /* Ensure it appears above other content */
 }
 
-.popup-overlay {
+/* Styling for the popup */
+.popup {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40%;
-    height: 90%;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Semi-transparent background */
     z-index: 1000;
-    /* Ensure it appears above other content */
+    background-color: var(--color-tone-5);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
 }
 
-.join-overlay {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30%;
-    height: 30%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+.popup.setting {
+    width: 40%;
+    height: 80%;
+}
+
+@media (orientation: portrait) {
+    .popup.setting {
+        width: 100%;
+        height: 100%;
+    }
+
+    @media (min-width: 48em) {
+        .popup.setting {
+            width: 80%;
+            height: 80%;
+        }
+    }
+
 }
 
 @media (min-width: 120em) {
-    .join-overlay {
-        width: 20%;
-        height: 20%;
+    .popup.setting {
+        width: 30%;
     }
 }
 
+.popup.join {
+    width: 30%;
+    height: 30%;
+}
 
-/* Styling for the popup */
-.popup {
-    background-color: white;
-    width: 90%;
-    height: 91%;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    padding: 5%;
-    display: flex;
-    flex-direction: column;
-    z-index: 1001;
+@media (orientation: portrait) {
+    .popup.join {
+        width: 80%;
+    }
+
+    @media (min-width: 48em) {
+        .popup.join {
+            width: 70%;
+        }
+    }
+
+}
+
+@media (min-width: 120em) {
+    .popup.join {
+        width: 20%;
+        height: 20%;
+    }
 }
 
 .join-title {
@@ -127,6 +148,12 @@
     font-size: 1em;
 }
 
+@media (max-width: 47em) {
+    .session-display-text {
+        font-size: em;
+    }
+}
+
 .session-visual-text {
     height: 10%;
     font-size: 1em;
@@ -180,35 +207,35 @@
 
 @keyframes rainbow {
     0% {
-        background-color: hsla(var(--red), 1);
+        background-color: var(--red);
     }
 
     14% {
-        background-color: hsla(var(--orange), 1);
+        background-color: var(--orange);
     }
 
     28% {
-        background-color: hsla(var(--yellow), 1);
+        background-color: var(--yellow);
     }
 
     42% {
-        background-color: hsla(var(--green), 1);
+        background-color: var(--green);
     }
 
     57% {
-        background-color: hsla(var(--blue), 1);
+        background-color: var(--blue);
     }
 
     71% {
-        background-color: hsla(var(--teal), 1);
+        background-color: var(--teal);
     }
 
     85% {
-        background-color: hsla(var(--purple), 1);
+        background-color: var(--purple);
     }
 
     100% {
-        background-color: hsla(var(--red), 1);
+        background-color: var(--red);
     }
 }
 

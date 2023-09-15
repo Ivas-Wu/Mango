@@ -55,6 +55,7 @@
     padding-top: 2px;
     padding-left: 0px;
     padding-right: 8px;
+    color: var(--color-tone-1);
 }
 
 .header .menuRight {
@@ -62,24 +63,39 @@
     justify-content: flex-end;
 }
 
+.header .menuRight #onlineButton {
+    color: var(--color-tone-1);
+    border: 1px solid var(--color-tone-1);
+    height: auto;
+}
+
+.header .menuRight #helpButton {
+    padding-left: 3%;
+    color: var(--color-tone-1);
+}
+
+.header .menuRight #settingsButton {
+    color: var(--color-tone-1);
+}
+
 .header .menuRight button svg {
     vertical-align: middle;
 }
 
+.header .title {
+    text-align: center;
+    font-size: 28px;
+    margin: 0;
+}
+
 @media (min-width: 64em) {
     .header .title {
-        text-align: center;
         font-size: 36px;
-    }
-
-    .header button.icon {
-        padding: 0 6px;
     }
 }
 
 @media (min-width: 48em) {
     .header .title {
-        text-align: center;
         font-size: 32px;
     }
 

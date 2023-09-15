@@ -7,23 +7,23 @@
     --darkBlue: #4681a8;
     --lightGreen: #60d466;
     --darkRed: #a84646;
-    --background: 266, 16%, 92%;
-    --text-primary: 0, 0%, 0%;
     /* Colors */
-    --black: 0, 0%, 0%;
-    --white: 0, 0%, 100%;
-    --red: 347, 84%, 68%;
-    --orange: 23, 84%, 68%;
-    --yellow: 52, 84%, 68%;
-    --green: 114, 84%, 68%;
-    --teal: 163, 84%, 68%;
-    --blue: 219, 84%, 68%;
-    --purple: 279, 84%, 68%;
-    --pink: 312, 84%, 68%;
+    --black: #000000;
+    --white: #ffffff;
+    --red: #f26987;
+    --orange: #f29d69;
+    --yellow: #f2e069;
+    --green: #77f269;
+    --teal: #69f2cb;
+    --blue: #6999f2;
+    --purple: #c269f2;
+    --pink: #f269d7;
     /* Gradients */
-    --gradient: linear-gradient(90deg, hsla(var(--red), 1) 0%, hsla(var(--orange), 1) 12.5%, hsla(var(--yellow), 1) 25%, hsla(var(--green), 1) 37.5%, hsla(var(--teal), 1) 50%, hsla(var(--blue), 1) 62.5%, hsla(var(--blue), 1) 75%, hsla(var(--purple), 1) 87.5%, hsla(var(--pink), 1) 100%);
+    --gradient: linear-gradient(90deg, var(--red) 0%, var(--orange) 12.5%, var(--yellow) 25%, var(--green) 37.5%, var(--teal) 50%, var(--blue) 62.5%, var(--blue) 75%, var(--purple) 87.5%, var(--pink) 100%);
     /* misc */
     --transition-main: .175, .685, .32;
+    --header-height: 40px;
+    --header-padding-x: 16px;
 }
 
 @media (min-width: 48em) {
@@ -62,10 +62,10 @@
     --opacity-50: rgba(255, 255, 255, 0.5);
     --error-background: #e3e3e1;
     --icon-disabled: #a6a6a6;
-  }
-  
-  /* Dark Theme Colors */
-  .dark {
+}
+
+/* Dark Theme Colors */
+.dark {
     --color-tone-1: #ffffff;
     --color-tone-2: #818384;
     --color-tone-3: #565758;
@@ -82,38 +82,24 @@
     --opacity-50: rgba(0, 0, 0, 0.5);
     --error-background: var(--color-tone-7);
     --icon-disabled: #59595a;
-  
-    --spelling-bee: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/SpellingBee-Icon-Normalized-Color.svg');
-    --daily: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Crossword-Icon-Normalized-Color.svg');
-    --mini: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Mini-Icon-Normalized-Color.svg');
-    --tiles: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Tiles-Icon-Normalized-Color.svg');
-    --sudoku: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Sudoku-Icon-Normalized-Color.svg');
-    --vertex: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Vertex-Icon-Normalized-Color.svg');
-    --letter-boxed: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/LetterBoxed-Icon-Normalized-Color.svg');
-    --digits: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Digits-Icon-Dark-Mode.svg');
-    --connections: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Connections-Icon-Dark-Mode.svg');
-    --nyt: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/NYT-Icon-Normalized-Color.svg');
-    --athletic: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/Athletic-Icon-Normalized-Color.svg');
-    --stats-auth: url('https://www.nytimes.com/games-assets/v2/assets/wordle/page-icons/stats-auth-cta.svg');
-    --wordlebot: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/WordleBot-Icon-Normalized-Color.svg');
-    --wordlebot-walking-icon: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/WordleBot-Walking-Icon-Color.svg');
-    --stats-problem: url('https://www.nytimes.com/games-assets/v2/assets/wordle/page-icons/transparent-wordle-issue.svg');
-    --link-info: url('https://www.nytimes.com/games-assets/v2/assets/wordle/page-icons/dark-mode-wordle-link.svg');
-    --gameslogo: url('https://www.nytimes.com/games-assets/v2/assets/wordle/page-icons/whitegameslogo.svg');
-    --california-privacy-icon: url('https://www.nytimes.com/games-assets/v2/assets/wordle/nav-icons/california-privacy-dark.svg');
-  
-    /* dark mode sb-promo */
-    --promo-icon-height: 27px;
-    --promo-icon-width: 27px;
-    --promo-icon-bg-size: 35px;
-    --promo-icon-padding: 4px;
-    --promo-icon-height: 40px;
-    --promo-icon-width: 40px;
-    --promo-icon-padding: 0px;
-    --svg-arrow-fill: var(--color-tone-7);
-    --svg-arrow-stroke: white;
-    --svg-arrow-fill-hover: white;
-    --svg-arrow-stroke-hover: black;
-  }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body {
+    color: #121212;
+    background: #fff;
+}
+
+body.dark {
+    color: #ffffff;
+    background: #121212;
+}

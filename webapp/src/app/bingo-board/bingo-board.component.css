@@ -3,28 +3,72 @@
     height: calc(100% - var(--header-height));
 }
 
+@media (orientation: portrait) {
+    .game-board {
+        flex-direction: column;
+    }
+}
+
+.bingo-button {
+    margin: 1%;
+    border-radius: 10px;
+    background-size: cover;
+    background-color: transparent;
+    border: 1px solid var(--color-tone-1);
+    color: var(--color-tone-1);
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.bingo-button:hover {
+    background-color: var(--color-tone-2);
+    color: var(--color-tone-7);
+}
+
+.bingo-button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+    pointer-events: none;
+    color: var(--color-tone-4);
+    border: 1px solid var(--color-tone-4);
+    background: transparent;
+}
+
 .bingo-parent {
     width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
     padding: 2%;
-    padding-left: 0%;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
 }
 
 .bingo-board {
-    height: 80%;
+    height: 70%;
     aspect-ratio: 1/1;
     padding-bottom: 1%;
     display: grid;
+    gap: 1%;
+}
+
+@media (min-width: 90em) {
+    .bingo-board {
+        height: 80%;
+    }
+}
+
+@media (orientation: portrait) {
+    .bingo-parent {
+        width: 100%;
+    }
 }
 
 .bingo-info {
     height: 20%;
-    /* border: 1px solid black; */
     aspect-ratio: 4/1;
     box-sizing: border-box;
     display: flex;
@@ -36,6 +80,7 @@
     margin: 0px;
     height: 50%;
     font-size: 2em;
+    color: var(--color-tone-1);
 }
 
 .bingo-info-buttons {
@@ -49,22 +94,21 @@
     }
 }
 
-/* .bingo-info-bingo {
-    margin: 0px;
-    height: 25%;
-    font-size: 1em;
-} */
-
 .square {
     background-color: var(--lightBlue);
     border: 1px solid var(--blue1);
-    color: white;
+    color: var(--color-tone-7);
     font-size: 2.5em;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    border-radius: 10%;
+}
+
+.square:hover {
+    background-color: var(--blue2);
 }
 
 .square.marked {
@@ -90,36 +134,42 @@
     box-sizing: border-box;
 }
 
+@media (orientation: portrait) {
+    .number-parent {
+        width: 100%;
+        padding-right: 2%;
+    }
+}
+
 .number-list {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
     height: 40%;
     overflow-y: auto;
-    border: 2px solid black;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
-    /* outline: 2px solid rgba(155, 115, 5, 0.952);
-    outline-offset: -4%;
-    border-radius: 5%;  */
+    border: 1px solid var(--color-tone-2);
+    margin: 1% 0;
 }
 
 .number {
-    width: 5vw;
-    height: 5vw;
+    width: 9.5%;
+    aspect-ratio: 1/1;
     background-color: var(--lightBlue);
-    border: 1px solid var(--blue1);
-    color: white;
+    /* border: 1px solid var(--blue1); */
+    box-sizing: border-box;
+    color: var(--color-tone-7);
     font-size: 2em;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin: -1px;
+    margin: 0.25%;
+    border-radius: 10%;
 }
 
 .number:hover {
-    background-color: var(--blue1);
+    background-color: var(--blue2);
 }
 
 .number.marked {
@@ -159,17 +209,10 @@
     display: inherit;
     justify-content: center;
 
-    .bingo-button:focus {
-        box-shadow:
-            0 0 0 2px hsl(var(--black)),
-            0 0 0 3px hsl(var(--white));
-        border: 1px solid transparent;
-    }
-
     .bingo-button {
         width: 100%;
         font-size: 1.5em;
-        color: hsl(var(--background));
+        color: var(--color-tone-7);
         background: var(--gradient);
         background-size: 500%;
         border: none;
@@ -184,6 +227,15 @@
         outline: none;
         opacity: 1;
     }
+
+    .bingo-button:disabled {
+        color: #ccc;
+        cursor: not-allowed;
+        pointer-events: none;
+        color: var(--color-tone-4);
+        border: 1px solid var(--color-tone-4);
+        background: transparent;
+    }
 }
 
 .operations-right {
@@ -193,6 +245,7 @@
 
     .bingo-button {
         width: calc(100%/3);
+        font-size: 1em;
     }
 }
 
@@ -200,45 +253,46 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2em;
+    font-size: 1em;
     height: 15%;
-    border: 2px solid black;
+    border: 1px solid var(--color-tone-2);
+    border-radius: 25px;
+    margin-top: 1%;
 }
 
-.formula-parent-mango {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3em;
-    height: 15%;
-    border: 2px solid black;
+@media (min-width: 80em) {
+    .formula-parent {
+        font-size: 1.5em;
+    }
 }
 
-.bingo-button {
-    background-size: cover;
-    background-color: transparent;
-    border: 2px solid #000;
-    color: black;
-    font-size: 1.5em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-align: center;
-}
-
-.bingo-button:hover {
-    background-color: var(--lightBlue);
-}
-
-.bingo-button.disabled {
-    color: #ccc;
-    cursor: not-allowed;
-    pointer-events: none;
-    opacity: 0.6;
-    background: transparent;
-    border: 2px solid #000;
+@media (min-width: 120em) {
+    .formula-parent {
+        font-size: 2em;
+    }
 }
 
 .small-mango {
-    height: 30%;
+    height: 50%;
     margin: -0.5%;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--lightBlue);
 }

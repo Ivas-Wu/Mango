@@ -15,6 +15,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { OnlinePopupComponent } from './online-popup/online-popup.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatButtonModule,
     MatSlideToggleModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
