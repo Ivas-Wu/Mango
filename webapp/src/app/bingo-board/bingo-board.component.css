@@ -1,11 +1,14 @@
 .game-board {
     display: flex;
     height: calc(100% - var(--header-height));
+    background-image: url('../../assets/wave_50_purple.svg'),url('../../assets/wave1.svg');
+    background-size: cover;
+    background-position: bottom center, 50%, 50%;
 }
 
 @media (orientation: portrait) {
     .game-board {
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
 }
 
@@ -13,27 +16,27 @@
     margin: 1%;
     border-radius: 10px;
     background-size: cover;
-    background-color: transparent;
-    border: 1px solid var(--color-tone-1);
-    color: var(--color-tone-1);
-    font-size: 1.5em;
+    background-color: var(--defaultSquare);
+    border: none;
+    color: var(--whiteFont);
+
+    font-size: 1.7em;
+    font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s ease;
     text-align: center;
 }
 
 .bingo-button:hover {
-    background-color: var(--color-tone-2);
-    color: var(--color-tone-7);
+    background-color: var(--hoverSquare);
+    color: var(--hoverText);
 }
 
 .bingo-button:disabled {
-    color: #ccc;
     cursor: not-allowed;
     pointer-events: none;
-    color: var(--color-tone-4);
-    border: 1px solid var(--color-tone-4);
-    background: transparent;
+    color: var(--disabledText);
+    background: var(--backgroundWhite);
 }
 
 .bingo-parent {
@@ -50,9 +53,14 @@
 .bingo-board {
     height: 70%;
     aspect-ratio: 1/1;
-    padding-bottom: 1%;
+
     display: grid;
     gap: 1%;
+    padding-bottom: 1%;
+    /* padding: 1%;
+
+    background-color: rgba(235, 231, 231, 0.8);
+    border-radius: 3%; */
 }
 
 @media (min-width: 90em) {
@@ -95,10 +103,11 @@
 }
 
 .square {
-    background-color: var(--lightBlue);
-    border: 1px solid var(--blue1);
-    color: var(--color-tone-7);
+    background-color: var(--defaultSquare);
+    color: var(--defaultText) ;
+    box-shadow: 0px 0px 5px #0000007e;
     font-size: 2.5em;
+    font-weight: 420;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -108,19 +117,27 @@
 }
 
 .square:hover {
-    background-color: var(--blue2);
+    color: var(--hoverText);
+    background-color: var(--hoverSquare);
 }
 
 .square.marked {
-    background-color: var(--darkBlue);
+    color: var(--markedText);
+    background-color: var(--markedSquare);
 }
 
 .square.complete {
-    background-color: var(--lightRed);
+    color: var(--markedText);
+    background-color: var(--completedSquare);
 }
 
 .square.selected {
-    background-color: var(--darkRed);
+    color: var(--markedText);
+    background-color: var(--selectedSquare);
+}
+
+.square.complete:hover {
+    background-color: var(--hoverCompleteSquare);
 }
 
 .number-parent {
@@ -147,18 +164,21 @@
     align-content: flex-start;
     height: 40%;
     overflow-y: auto;
-    border: 1px solid var(--color-tone-2);
+    /* box-shadow: 0px 0px 5px #0000007e;     */
     margin: 1% 0;
+    padding: 1%;
+    border-radius: 25px;
+    background-color: var(--backgroundWhite);
 }
 
 .number {
     width: 9.5%;
     aspect-ratio: 1/1;
-    background-color: var(--lightBlue);
-    /* border: 1px solid var(--blue1); */
+    background-color: var(--defaultSquare);
     box-sizing: border-box;
-    color: var(--color-tone-7);
+    color: var(--defaultText);
     font-size: 2em;
+    font-weight: 420;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -166,26 +186,29 @@
     transition: background-color 0.3s ease;
     margin: 0.25%;
     border-radius: 10%;
+    box-shadow: 0px 0px 5px #0000007e;
 }
 
 .number:hover {
-    background-color: var(--blue2);
+    background-color: var(--hoverSquare);
+    color: var(--hoverText);
 }
 
 .number.marked {
-    background-color: var(--darkBlue);
+    background-color: var(--markedSquare);
+    color: var(--markedText);
 }
 
 .number.hold {
-    background-color: var(--lightGreen);
+    background-color: var(--holdSquare);
 }
 
 .number.used {
-    background-color: var(--lightRed);
+    background-color: var(--completedSquare);
 }
 
 .number.selected {
-    background-color: var(--darkRed);
+    background-color: var(--selectedSquare);
 }
 
 .operations-parent {
@@ -211,8 +234,9 @@
 
     .bingo-button {
         width: 100%;
-        font-size: 1.5em;
-        color: var(--color-tone-7);
+        text-align: center;
+        font-size: 1em;
+        font-weight: 500;
         background: var(--gradient);
         background-size: 500%;
         border: none;
@@ -229,12 +253,22 @@
     }
 
     .bingo-button:disabled {
-        color: #ccc;
         cursor: not-allowed;
         pointer-events: none;
-        color: var(--color-tone-4);
-        border: 1px solid var(--color-tone-4);
-        background: transparent;
+        color: var(--disabledText);
+        background: var(--backgroundWhite);
+    }
+
+    @media (min-width: 64em) {
+        .bingo-button {
+            font-size: 1.3em;
+        }
+    }
+
+    @media (min-width: 120em) {
+        .bingo-button {
+            font-size: 2em;
+        }
     }
 }
 
@@ -247,6 +281,18 @@
         width: calc(100%/3);
         font-size: 1em;
     }
+
+    @media (min-width: 64em) {
+        .bingo-button {
+            font-size: 1.3em;
+        }
+    }
+
+    @media (min-width: 120em) {
+        .bingo-button {
+            font-size: 2em;
+        }
+    }
 }
 
 .formula-parent {
@@ -254,10 +300,12 @@
     justify-content: center;
     align-items: center;
     font-size: 1em;
+    font-weight: 500;
     height: 15%;
-    border: 1px solid var(--color-tone-2);
     border-radius: 25px;
     margin-top: 1%;
+    color: var(--whiteFont);
+    background-color: var(--backgroundWhite);
 }
 
 @media (min-width: 80em) {
@@ -294,5 +342,5 @@
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--lightBlue);
+    background: var(--defaultSquare);
 }

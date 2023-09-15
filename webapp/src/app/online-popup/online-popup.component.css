@@ -102,7 +102,6 @@
     width: 90%;
     height: 100%;
     font-size: 1.5em;
-    font-family: 'nyt-karnakcondensed';
     font-weight: 700;
     letter-spacing: 0.01em;
     display: flex;
@@ -122,7 +121,6 @@
 .title {
     height: 10%;
     font-size: 2em;
-    font-family: 'nyt-karnakcondensed';
     font-weight: 700;
     letter-spacing: 0.01em;
     display: flex;
@@ -177,7 +175,7 @@
     height: 10%;
     aspect-ratio: 1/1;
     border-radius: 50%;
-    background-color: var(--lightBlue);
+    background-color: var(--defaultSquare);
     animation: bounce 0.6s;
     animation-direction: alternate;
     animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);

@@ -21,8 +21,7 @@
                 <button class="bingo-button" (click)="finishBingo()" [disabled]="!foundBingo">MANGO</button>
             </div>
             <div class="operations-right">
-                <button class="bingo-button" (click)="verify()" [disabled]="select.length != 1">Verify <i class="fa fa-check-circle" aria-hidden="true"></i>
-                </button>
+                <button class="bingo-button" (click)="verify()" [disabled]="select.length != 1">Verify</button>
 
                 <button class="bingo-button" (click)="clear()">Clear</button>
                 <button class="bingo-button" (click)="clearAll()">Clear All</button>

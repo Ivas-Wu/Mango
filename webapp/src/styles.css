@@ -1,41 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --lightRed: #f76c6c;
-    --lightBlue: #83ccfd;
-    --blue1: #419edd;
-    --blue2: #60a6d4;
-    --darkBlue: #4681a8;
-    --lightGreen: #60d466;
-    --darkRed: #a84646;
-    /* Colors */
-    --black: #000000;
+    --defaultSquare: #bde0fe;
+    --hoverSquare: #a2d2ff;
+    --markedSquare: #90c3f3;
+    --defaultText: #ffffffdf;
+    --hoverText: #e9e9e9;
+    --markedText: #ffffff;
+
+    --holdSquare: #E5CDFF;
+
+    --completedSquare: #9AF1DA; 
+    --selectedSquare: #6ADDD7;
+    --hoverCompleteSquare: #74e9c9;
+
+    --backgroundWhite: #fff4fa96;
+    --disabledText: #fdfff5;
+
+    --headerColor: #fdffb6;
+    --topScreen: #B8B0FF;
+    --bottomScreen: #ffc8dd;
+    --blackFont: #2e233d;
+    --whiteFont: #fffff8;
+    
+    --black: #19181a;
     --white: #ffffff;
-    --red: #f26987;
-    --orange: #f29d69;
-    --yellow: #f2e069;
-    --green: #77f269;
-    --teal: #69f2cb;
-    --blue: #6999f2;
-    --purple: #c269f2;
-    --pink: #f269d7;
+    --red: #FFB3C4;
+    --orange: #FFD7B3;
+    --yellow: #FFFBB3;
+    --green: #B3FFB3;
+    --teal: #B3FFEF;
+    --blue: #B3D0FF;
+    --purple: #CEB3FF;
+    --pink: #FFB3EC;
     /* Gradients */
     --gradient: linear-gradient(90deg, var(--red) 0%, var(--orange) 12.5%, var(--yellow) 25%, var(--green) 37.5%, var(--teal) 50%, var(--blue) 62.5%, var(--blue) 75%, var(--purple) 87.5%, var(--pink) 100%);
     /* misc */
     --transition-main: .175, .685, .32;
-    --header-height: 40px;
+    --header-height: 50px;
     --header-padding-x: 16px;
-}
-
-@media (min-width: 48em) {
-    :root {
-        --header-padding-x: 20px;
-    }
-}
-
-@media (min-width: 64em) {
-    :root {
-        --header-padding-x: 24px;
-    }
 }
 
 @media (min-width: 26em) {
@@ -43,6 +45,28 @@
         --header-height: 65px;
     }
 }
+
+@media (min-width: 48em) {
+    :root {
+        --header-padding-x: 20px;
+        --header-height: 75px;
+    }
+}
+
+@media (min-width: 64em) {
+    :root {
+        --header-padding-x: 24px;
+        --header-height: 80px;
+    }
+}
+
+@media (min-width: 120em) {
+    :root {
+        --header-padding-x: 36px;
+        --header-height: 100px;
+    }
+}
+
 
 /* Light theme colors */
 :root {
@@ -92,14 +116,16 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-body {
+    background-image: linear-gradient(to top, var(--bottomScreen)  0%, var(--topScreen) 100%);
     color: #121212;
-    background: #fff;
 }
 
 body.dark {
     color: #ffffff;
-    background: #121212;
+    background: #393E41;
+    font-family: 'nyt-karnakcondensed';
 }
+
+/* #cdb4db // #ffc8dd // #ffafcc // #bde0fe // #a2d2ff */
+/* #61f4de // #65cbe9 // #68b6ef // #6c8dfa // #6e78ff */
+/* #809bce // #95b8d1 // #b8e0d2 // #d6eadf // #eac4d5 */

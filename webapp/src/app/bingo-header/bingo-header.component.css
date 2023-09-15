@@ -14,10 +14,6 @@
     cursor: pointer;
 }
 
-.header button:focus-visible {
-    outline: 2px solid var(--outline-focus);
-}
-
 .header button.icon {
     background: none;
     border: none;
@@ -26,21 +22,24 @@
     font-size: 2vw;
 }
 
-.header button.icon:last-child {
-    padding-right: 0;
+@media (orientation: portrait) {
+    .header button.icon {
+        font-size: 5vw;
+    }
 }
 
 .header .title {
     flex-grow: 2;
-    font-family: 'nyt-karnakcondensed';
     font-weight: 700;
     font-size: 28px;
     letter-spacing: 0.01em;
-    text-align: left;
     left: 0;
     right: 0;
     pointer-events: none;
     position: relative;
+    text-align: center;
+    margin: 0;
+    color: var(--headerColor);
 }
 
 .header .menuLeft {
@@ -55,7 +54,7 @@
     padding-top: 2px;
     padding-left: 0px;
     padding-right: 8px;
-    color: var(--color-tone-1);
+    color: var(--headerColor);    
 }
 
 .header .menuRight {
@@ -64,34 +63,20 @@
 }
 
 .header .menuRight #onlineButton {
-    color: var(--color-tone-1);
-    border: 1px solid var(--color-tone-1);
     height: auto;
+    color: var(--topScreen);
+    font-weight: 700;
+    border: none;
+    background-color: var(--headerColor);
 }
 
 .header .menuRight #helpButton {
     padding-left: 3%;
-    color: var(--color-tone-1);
+    color: var(--headerColor);
 }
 
 .header .menuRight #settingsButton {
-    color: var(--color-tone-1);
-}
-
-.header .menuRight button svg {
-    vertical-align: middle;
-}
-
-.header .title {
-    text-align: center;
-    font-size: 28px;
-    margin: 0;
-}
-
-@media (min-width: 64em) {
-    .header .title {
-        font-size: 36px;
-    }
+    color: var(--headerColor);
 }
 
 @media (min-width: 48em) {
@@ -107,5 +92,17 @@
     #navButton {
         padding-top: 2px;
         padding-left: 0px;
+    }
+}
+
+@media (min-width: 64em) {
+    .header .title {
+        font-size: 36px;
+    }
+}
+
+@media (min-width: 120em) {
+    .header .title {
+        font-size: 54px;
     }
 }
