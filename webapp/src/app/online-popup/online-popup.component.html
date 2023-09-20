@@ -1,8 +1,8 @@
 <div *ngIf="isPopupVisible" class="overlay">
     <div class="popup" [class.setting]=true *ngIf="inSession">
-        <div class="title">
-            <h2 mat-dialog-title>Game Settings</h2>
-        </div>
+        <h1 class="title">
+            Game Settings
+        </h1>
         <div class="session-display">
             <div class="session-display-title">
                 {{ you == 0 ? 'Player 1' : 'Not Player 1' }}
@@ -71,11 +71,9 @@
         </p>
     </div>
     <div class="popup" [class.join]=true *ngIf="!inSession">
-        <div class="join-title">
-            <h2 mat-dialog-title>
-                Join a online session!
-            </h2>
-        </div>
+        <h1 class="join-title">
+            Join a online session!
+        </h1>
         <div class="join-body">
             <mat-form-field class="join-id">
                 <mat-label>Session ID:</mat-label>

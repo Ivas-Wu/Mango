@@ -20,7 +20,7 @@
     border: none;
     color: var(--whiteFont);
 
-    font-size: 1.7em;
+    font-size: 1.5em;
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -53,14 +53,12 @@
 .bingo-board {
     height: 70%;
     aspect-ratio: 1/1;
-
     display: grid;
     gap: 1%;
     padding-bottom: 1%;
-    /* padding: 1%;
-
-    background-color: rgba(235, 231, 231, 0.8);
-    border-radius: 3%; */
+    /* padding: 3%;
+    border-radius: 25px;
+    background-color: var(--backgroundWhite); */
 }
 
 @media (min-width: 90em) {
@@ -82,13 +80,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .bingo-info-turn {
     margin: 0px;
     height: 50%;
     font-size: 2em;
-    color: var(--color-tone-1);
+    color: var(--whiteFont);
+    display: flex;
+    align-items: center;
 }
 
 .bingo-info-buttons {
@@ -106,7 +107,7 @@
     background-color: var(--defaultSquare);
     color: var(--defaultText) ;
     box-shadow: 0px 0px 5px #0000007e;
-    font-size: 2.5em;
+    font-size: 2.3em;
     font-weight: 420;
     display: flex;
     align-items: center;
@@ -267,7 +268,7 @@
 
     @media (min-width: 120em) {
         .bingo-button {
-            font-size: 2em;
+            font-size: 1.7em;
         }
     }
 }
@@ -290,7 +291,7 @@
 
     @media (min-width: 120em) {
         .bingo-button {
-            font-size: 2em;
+            font-size: 1.7em;
         }
     }
 }

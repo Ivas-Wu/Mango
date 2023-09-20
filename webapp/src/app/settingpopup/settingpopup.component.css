@@ -45,12 +45,14 @@
 
 /* Styling for the popup */
 .popup {
-    background-color: var(--color-tone-5);
+    background-color: var(--popupBack);
+    color: var(--blackFont);
     width: 100%;
     height: 100%;
-    border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     padding: 2%;
+    border-radius: 25px;
+    font-family: var(--popupFont);
 }
 
 .title {
@@ -61,6 +63,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: var(--popupFont);
+    margin: 3%;
 }
 
 .game-parent {
@@ -95,7 +99,7 @@
  } 
 
 .slider-parent {
-    height: 13%;
+    height: 11%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -111,11 +115,14 @@
     justify-content: space-between;
     width: 80%;
     font-size: 1.4em;
+    align-items: center;
 }
 
 .slider-label-name {}
 
-.slider-label-value {}
+.slider-label-value {
+    /* width: 1%; */
+}
 
 .button-parent {
     height: 8%;

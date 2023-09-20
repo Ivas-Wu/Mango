@@ -15,11 +15,142 @@
     /* Ensure it appears above other content */
 }
 
+@media (min-width: 64em) {
+    .popup-overlay {
+        width: 55%;
+    }
+}
+
+@media (min-width: 90em) {
+    .popup-overlay {
+        width: 40%;
+    }
+}
+
+@media (orientation: portrait) {
+    @media (min-width:0em) {
+        .popup-overlay {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    @media (min-width: 48em) {
+        .popup-overlay {
+            width: 90%;
+            height: 90%;
+        }
+    }
+}
+
 /* Styling for the popup */
 .popup {
-    background-color: var(--color-tone-5);
+    background-color: var(--popupBack);
+    color: var(--blackFont);
     width: 100%;
     height: 100%;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    padding: 2%;
+}
+
+.title {
+    height: 8%;
+    font-size: 3em;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--popupFont);
+    margin: 3%;
+}
+
+.body {
+    height: 82%;
+    padding: 1%;
+}
+
+.pages {
+    height: 100%;
+    overflow: auto;
+}
+
+.text-parent-obj {
+    height: 20%;
+    padding: 0 2.5%;
+}
+
+.image-parent-obj {
+    display: flex;
+    justify-content: space-evenly;
+    height: 30%;
+    padding: 0 2.5%;
+}
+
+.example-image-obj {
+    max-height: 100%;
+    margin: 1.5%;
+    border-radius: 5%;
+}
+
+::ng-deep .mat-mdc-tab-group {
+    height: 100% !important;
+}
+
+.text-parent-num {
+    height: 20%;
+    padding: 0 2.5%;
+}
+
+.gif-parent-num {
+    display: flex;
+    justify-content: space-evenly;
+    height: 30%;
+    padding: 0 2.5%;
+}
+
+.text-parent-op {
+    height: 20%;
+    padding: 0 2.5%;
+}
+
+.gif-parent-op {
+    display: flex;
+    justify-content: space-evenly;
+    height: 30%;
+    padding: 0 2.5%;
+}
+
+.text-parent-clear {
+    height: 20%;
+    padding: 0 2.5%;
+}
+
+.gif-parent-clear {
+    display: flex;
+    justify-content: space-evenly;
+    height: 30%;
+    padding: 0 2.5%;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--defaultSquare);
 }

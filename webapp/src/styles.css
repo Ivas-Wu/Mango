@@ -13,14 +13,17 @@
     --selectedSquare: #6ADDD7;
     --hoverCompleteSquare: #74e9c9;
 
-    --backgroundWhite: #fff4fa96;
+    --backgroundWhite: #fff4fa72;
     --disabledText: #fdfff5;
 
-    --headerColor: #fdffb6;
-    --topScreen: #B8B0FF;
-    --bottomScreen: #ffc8dd;
-    --blackFont: #2e233d;
+    --headerColor: #fdffa5;
+    --topScreen: #FFC8DC;
+    --bottomScreen: #B0BAFF;
+    --blackFont: #5b4b72;
     --whiteFont: #fffff8;
+
+    --popupBack: #FFFDD0;
+    --popupFont: Lato, Helvetica, sans-serif;
     
     --black: #19181a;
     --white: #ffffff;
@@ -38,6 +41,7 @@
     --transition-main: .175, .685, .32;
     --header-height: 50px;
     --header-padding-x: 16px;
+    --headerFont: Roboto, Helvetica, sans-serif;
 }
 
 @media (min-width: 26em) {
@@ -115,7 +119,7 @@ body {
 
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: Lato, "Helvetica Neue", sans-serif;
     background-image: linear-gradient(to top, var(--bottomScreen)  0%, var(--topScreen) 100%);
     color: #121212;
 }
@@ -123,7 +127,7 @@ body {
 body.dark {
     color: #ffffff;
     background: #393E41;
-    font-family: 'nyt-karnakcondensed';
+    /* font-family: 'C'; */
 }
 
 /* #cdb4db // #ffc8dd // #ffafcc // #bde0fe // #a2d2ff */

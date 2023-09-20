@@ -213,6 +213,7 @@ export class BingoBoardComponent {
     this.turn = 0;
     this.foundBingo = false;
     this.setBingo = false;
+    this.timerStarted = false;
     this.clearAll();
 
     if (this.timeM) {
@@ -489,7 +490,7 @@ export class BingoBoardComponent {
       this.countDown = this.timer;
       this.timeM = true; //only option atm
     }
-    if (data.completion) {
+    if (data.completion != undefined) {
       this.completion = data.completion;
     }
     if (data.action == 'start') { //start of a new game

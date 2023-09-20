@@ -38,6 +38,10 @@
         <div class="slider-parent">
             <div class="label-parent">
                 <label id="slider-label-name" class="slider-label-name">Board Size:</label>
+                <!-- <mat-form-field class="slider-label-value">
+                    <mat-label>Session ID:</mat-label>
+                    <input matInput type="number" placeholder="3" min="2" max="8" [(ngModel)]="size">
+                </mat-form-field> -->
                 <label class="slider-label-value">{{size}}</label>
             </div>
             <mat-slider class="slider" [disabled]="disabled" [max]="maxBoardSize" [min]="minBoardSize" [step]="step"

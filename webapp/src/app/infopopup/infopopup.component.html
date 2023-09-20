@@ -1,7 +1,109 @@
 <div *ngIf="isPopupVisible" class="popup-overlay">
     <div class="popup">
-        <h2>Popup Content</h2>
-        <p>This is the popup content.</p>
-        <button (click)="closePopup()">Close</button>
+        <div class="title">
+            How to Play
+        </div>
+        <div class="body">
+            <mat-tab-group>
+                <mat-tab label="Objective">
+                    <div class="pages">
+                        <div class="text-parent-obj">
+                            <h3>Classic Mode:</h3>
+                            <b>Win the game by marking any row, colunm or diagonal on your game board!</b>
+                        </div>
+                        <div class="image-parent-obj">
+                            <img class="example-image-obj" src="../../assets/bingo-column.png"
+                                alt="bingo-column-example">
+                            <img class="example-image-obj" src="../../assets/bingo-row.png" alt="bingo-row-example">
+                            <img class="example-image-obj" src="../../assets/bingo-diagonal.png"
+                                alt="bingo-diagonal-example">
+                        </div>
+                        <div class="text-parent-obj">
+                            <h3>Completion Mode:</h3>
+                            <b>
+                                Win the game by marking the entire board!
+                            </b>
+                        </div>
+                        <div class="image-parent-obj">
+                            <img class="example-image-obj" src="../../assets/bingo-complete.png"
+                                alt="bingo-complete-example">
+                            <img class="example-image-obj" src="../../assets/bingo-complete.png"
+                                alt="bingo-complete-example">
+                            <img class="example-image-obj" src="../../assets/bingo-complete.png"
+                                alt="bingo-complete-example">
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Get Numbers">
+                    <div class="pages">
+                        <div class="text-parent-num">
+                            <h3>Classic Mode:</h3>
+                            <b>Click the "Next turn" button to get more numbers. Try and win in the least number of
+                                turns!</b>
+                        </div>
+                        <div class="gif-parent-num">
+                            <img class="example-gif-num" src="../../assets/bingo-column.png" alt="class-mode-numbers">
+                        </div>
+                        <div class="text-parent-num">
+                            <h3>Timer Mode:</h3>
+                            <b>
+                                Every x seconds a new set of numbers will be presented. Try and win as fast as possible!
+                            </b>
+                        </div>
+                        <div class="gif-parent-num">
+                            <img class="example-gif-num" src="../../assets/bingo-column.png" alt="timer-mode-numbers">
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Using Numbers">
+                    <div class="pages">
+                        <div class="text-parent-op">
+                            <h3>Addition and Multiplication:</h3>
+                            <b>Select all the numbers you want first, and then hit the operation button to apply it to
+                                all of them!</b>
+                        </div>
+                        <div class="gif-parent-op">
+                            <img class="example-gif-op" src="../../assets/bingo-column.png" alt="class-mode-numbers">
+                        </div>
+                        <div class="text-parent-op">
+                            <h3>Subtraction and Division:</h3>
+                            <b>
+                                Select 2 numbers. The second number will be subtracted/divided from the first number. If
+                                the result must be a positive integer.
+                            </b>
+                        </div>
+                        <div class="gif-parent-op">
+                            <img class="example-gif-op" src="../../assets/bingo-column.png" alt="timer-mode-numbers">
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Clearing">
+                    <div class="text-parent-clear">
+                        <h3>Clear:</h3>
+                        <b>Will clear all marked, selected and held numbers, bingo board squares and phantom numbers. Any
+                            completed bingo board squares that are selected and its components will also be cleared</b>
+                    </div>
+                    <div class="gif-parent-clear">
+                        <img class="example-gif-clear" src="../../assets/bingo-column.png" alt="class-mode-numbers">
+                    </div>
+                    <div class="text-parent-clear">
+                        <h3>Clear All:</h3>
+                        <b>
+                            Will clear all marked, selected, held and completed squares of all types.
+                        </b>
+                    </div>
+                    <div class="gif-parent-clear">
+                        <img class="example-gif-clear" src="../../assets/bingo-column.png" alt="timer-mode-numbers">
+                    </div>
+                </mat-tab>
+                <!-- <mat-tab label="Game Modes">
+                    <div class="pages">
+                        Classic Mode
+                        Completion Mode
+                        Maybe with more game modes, just in objectives for now
+                    </div>
+                </mat-tab> -->
+            </mat-tab-group>
+        </div>
     </div>
 </div>

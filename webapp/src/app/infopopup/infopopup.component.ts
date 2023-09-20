@@ -9,6 +9,7 @@ import { InfopopupService } from '../infopopup.service';
 export class InfopopupComponent {
   isPopupVisible: boolean = false;
   newOpen: boolean = false;
+
   constructor(private elRef: ElementRef, private popupService: InfopopupService) {
     this.popupService.popupVisible$.subscribe((isVisible) => {
       this.isPopupVisible = isVisible;
