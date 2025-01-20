@@ -99,6 +99,10 @@
     height: 100% !important;
 }
 
+::ng-deep .mat-mdc-tab-body-wrapper {
+    height: 100% !important;
+}
+
 .text-parent-num {
     height: 20%;
     padding: 0 2.5%;
