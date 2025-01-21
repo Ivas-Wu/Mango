@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebsocketService {
-  private readonly serverUrl = 'ws://localhost:3000';
+  private readonly serverUrl = environment.wsUrl;
   private socket: WebSocket | undefined;
 
   private messageSubject = new BehaviorSubject<string>("");

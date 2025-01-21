@@ -7,6 +7,7 @@ const WebSocket = require('ws');
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
+require('dotenv').config();
 
 // Data structure to store game sessions
 const gameSessions = {};
